@@ -1,0 +1,373 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Hide Next.js dev overlay completely - all variations */
+#__next-build-watcher,
+nextjs-portal,
+[data-nextjs-dialog-overlay],
+[data-nextjs-toast],
+[data-nextjs-scroll-focus-boundary],
+[data-nextjs-route-announcer],
+[id^="__next"] > div[style*="position: fixed"][style*="bottom"][style*="left"],
+div[style*="position: fixed"][style*="bottom: 10px"][style*="left: 10px"],
+div[style*="position: fixed"][style*="z-index: 99999"],
+button[aria-label*="Next.js"],
+button[aria-label*="Turbopack"],
+div[class*="nextjs"],
+div[id*="nextjs"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+:root {
+  --bas-orange: #ec7f30;
+  --bas-orange-light: #f5a55a;
+  --bas-orange-dark: #c96820;
+  --bas-black: #000000;
+  --bas-cream: #f5e6d3;
+  --bas-dark-purple: #2d1b4e;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased;
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--bas-black);
+    color: white;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    width: 200%;
+    height: 200%;
+    background-image: url('https://ext.same-assets.com/4158576384/3859852827.svg');
+    background-size: 100px 100px;
+    background-repeat: repeat;
+    opacity: 0.05;
+    transform: rotate(45deg);
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bas-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bas-orange);
+  border-radius: 4px;
+}
+
+/* Hero Typography - Compact and well-fitted like Hyperliquid */
+.hero-title {
+  font-size: clamp(2.5rem, 8vw, 7rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  max-width: 90%;
+  margin: 0 auto;
+  perspective: 1000px;
+}
+
+.hero-title > span {
+  display: block;
+  position: relative;
+  animation: shimmer 4s ease-in-out infinite;
+  background-size: 200% auto;
+  filter: drop-shadow(0 0 30px rgba(236, 127, 48, 0.4));
+}
+
+.hero-title > span > span {
+  transition: all 0.3s ease;
+}
+
+.hero-title > span > span:hover {
+  transform: translateY(-5px) scale(1.1);
+  filter: drop-shadow(0 0 20px rgba(236, 127, 48, 0.8));
+}
+
+/* Shimmer animation for gradient text */
+@keyframes shimmer {
+  0% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+  100% {
+    background-position: 0% center;
+  }
+}
+
+.section-title {
+  font-size: clamp(2rem, 8vw, 8rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(2deg);
+  }
+}
+
+@keyframes floatReverse {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(20px) rotate(-2deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(236, 127, 48, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(236, 127, 48, 0.6);
+  }
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+.float-animation-reverse {
+  animation: floatReverse 5s ease-in-out infinite;
+}
+
+.pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Card styles */
+.feature-card {
+  @apply rounded-3xl p-8 transition-all duration-500;
+  transform-style: preserve-3d;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px) rotateX(2deg) rotateY(2deg);
+}
+
+.card-purple {
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid rgba(236, 127, 48, 0.3);
+  color: white;
+}
+
+.card-orange {
+  background: linear-gradient(135deg, #ec7f30 0%, #f5a55a 100%);
+  color: white;
+}
+
+.card-dark {
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid rgba(236, 127, 48, 0.3);
+  color: white;
+}
+
+.card-green {
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid rgba(236, 127, 48, 0.3);
+  color: white;
+}
+
+.card-cream {
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid rgba(236, 127, 48, 0.4);
+  backdrop-filter: blur(10px);
+  color: white;
+}
+
+/* 3D Card Effect */
+.perspective-card {
+  perspective: 1000px;
+}
+
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.card-3d:hover {
+  transform: rotateY(10deg) rotateX(-5deg) translateZ(20px);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--bas-orange) 0%, var(--bas-orange-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass effect */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Button styles */
+.btn-primary {
+  @apply px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300;
+  background: var(--bas-black);
+  color: white;
+  border: 2px solid var(--bas-orange);
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 40px rgba(236, 127, 48, 0.4);
+  background: var(--bas-orange);
+}
+
+.btn-secondary {
+  @apply px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300;
+  background: var(--bas-orange);
+  color: white;
+}
+
+.btn-secondary:hover {
+  transform: scale(1.05);
+  background: var(--bas-orange-dark);
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  @apply fixed right-6 top-1/2 -translate-y-1/2 z-50;
+}
+
+.scroll-dot {
+  @apply w-3 h-3 rounded-full mb-2 transition-all duration-300 cursor-pointer;
+  background: rgba(236, 127, 48, 0.3);
+}
+
+.scroll-dot.active {
+  background: var(--bas-orange);
+  transform: scale(1.3);
+}
+
+/* Section transitions */
+.section {
+  @apply min-h-screen relative overflow-hidden;
+}
+
+/* Parallax container */
+.parallax-container {
+  transform-style: preserve-3d;
+}
+
+/* Logo animation */
+@keyframes logo-rotate {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+.logo-3d {
+  animation: logo-rotate 20s linear infinite;
+  transform-style: preserve-3d;
+}
+
+/* Text reveal animation */
+.text-reveal {
+  overflow: hidden;
+}
+
+.text-reveal span {
+  display: inline-block;
+}
+
+/* Stagger children animations */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* Bento grid */
+.bento-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, auto);
+}
+
+@media (max-width: 1024px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Marquee */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Noise overlay */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.03;
+  z-index: 1000;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
